@@ -1,0 +1,26 @@
+
+@font-face {
+    font-family: 'Kremlin';
+    src: url('kremlin.ttf') format('truetype');
+}
+
+h1 {
+    font-size: 20px;
+    font-family: 'Kremlin', sans-serif;
+    color: black;
+    text-align: center;
+}
+
+canvas {
+    border: 2px solid black; /* Añadido un borde de 2px para mayor visibilidad */
+    display: block;
+    margin: 0 auto;
+}
+
+#puntuacion {
+    font-size: 14px; /* Aumenté ligeramente el tamaño de fuente para mejor legibilidad */
+    font-weight: bold;
+    color: black;
+    text-align: center;
+    margin-top: 10px; /* Añadido un margen superior para separar del canvas */
+}

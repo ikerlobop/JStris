@@ -1,10 +1,9 @@
-
 const filas = 20;
 const columnas = 10;
 const tamañoCuadro = 20;  
 const canvas = document.getElementById('tetrisCanvas');
 const contexto = canvas.getContext('2d');
-const puntuacionDiv = document.getElementById('puntuacion'); // Elemento para mostrar la puntuación
+const puntuacionDiv = document.getElementById('puntuacion');
 
 let tablero = Array.from({ length: filas }, () => Array(columnas).fill(null));
 const piezas = [
@@ -58,7 +57,6 @@ const piezas = [
   },
 ];
 
-// Posición inicial de la pieza
 let piezaActual = piezas[Math.floor(Math.random() * piezas.length)];
 let posicionPieza = { x: 3, y: 0 };
 

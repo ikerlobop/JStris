@@ -3,9 +3,10 @@ const columnas = 10;
 const tamañoCuadro = 20;  
 const canvas = document.getElementById('tetrisCanvas');
 const contexto = canvas.getContext('2d');
-const puntuacionDiv = document.getElementById('puntuacion');
+const puntuacionDiv = document.getElementById('puntos');
 
 let tablero = Array.from({ length: filas }, () => Array(columnas).fill(null));
+
 const piezas = [
   {
     forma: [
@@ -196,7 +197,7 @@ function limpiarFilas() {
 
 // Actualizar visualización de la puntuación
 function actualizarPuntuacion() {
-  puntuacionDiv.textContent = `Puntuación: ${puntuacionTotal}`;
+  puntuacionDiv.textContent = `puntos: ${puntuacionTotal}`;
 }
 
 // Manejar entrada del usuario

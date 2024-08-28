@@ -17,9 +17,35 @@ canvas {
     margin: 0 auto;
 }
 
-#puntuacion {
+p {
     font-size: 14px; 
+    font-family:  sans-serif;
     color: black;
     text-align: center;
     margin-top: 10px; 
 }
+
+#puntuacion {
+    font-size: 14px; 
+    font-family: 'Kremlin', sans-serif;
+    color: black;
+    text-align: center;
+    margin-top: 10px; 
+}
+
+#nivel {
+    font-size: 14px; 
+    font-family: 'Kremlin', sans-serif;
+    color: black;
+    text-align: center;
+    margin-top: 10px; 
+}
+
+#lineas {
+    font-size: 14px; 
+    font-family: 'Kremlin', sans-serif;
+    color: black;
+    text-align: center;
+    margin-top: 10px; 
+}
+

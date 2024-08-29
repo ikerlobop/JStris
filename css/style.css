@@ -1,7 +1,7 @@
 
 @font-face {
     font-family: 'Kremlin';
-    src: url('Kremlin.ttf') format('truetype');
+    src: url('../fonts/kremlin.ttf') format('truetype');
 }
 
 h1 {

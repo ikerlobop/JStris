@@ -165,6 +165,13 @@ document.addEventListener('keydown', evento => {
   }
 });
 
+//rotar pieza al presionar pantalla rapidamente
+document.addEventListener('touchstart', evento => {
+  rotarPieza();
+  dibujarTablero();
+});
+
+
 // Chequear colisión
 function colision(dx, dy) {
   for (let y = 0; y < piezaActual.forma.length; y++) {

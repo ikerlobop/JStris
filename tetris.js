@@ -56,6 +56,15 @@ const piezas = [
     ],
     color: '#FFA500'
   },
+  {
+    forma: [
+      [1, 1, 1],
+      [1, 0, 1],
+    ],
+    color: '#500080'
+
+      
+  },
 ];
 
 let piezaActual = piezas[Math.floor(Math.random() * piezas.length)];
@@ -114,6 +123,7 @@ function rotarPieza() {
   }
 }
 
+
 // Bucle principal
 function bucle() {
   dibujarTablero();
@@ -123,6 +133,7 @@ function bucle() {
     fijarPieza();
   }
   setTimeout(bucle, 500);
+  
 }
 bucle();
 
@@ -131,10 +142,20 @@ function gameOver() {
   if (tablero[0].some(cuadro => cuadro !== null)) {
     alert('Game Over');
     tablero = Array.from({ length: filas }, () => Array(columnas).fill(null));
-    puntuacionTotal = 0; // Reiniciar puntuación
-    actualizarPuntuacion(); // Actualizar visualización de puntuación
+    puntuacionTotal = 0; 
+    nivel = 0; 
+    lineas = 0; 
+    actualizarPuntuacion();
   }
 }
+//nivel
+let nivel = 0;
+let lineas = 0;
+function actualizarPuntuacion() {
+  puntuacionDiv.innerHTML = `Puntuación: ${puntuacionTotal} <br> Nivel: ${nivel} <br> Lineas: ${lineas}`;
+}
+
+
 
 // Rotar pieza al presionar barra espaciadora
 document.addEventListener('keydown', evento => {
@@ -220,5 +241,5 @@ document.addEventListener('keydown', evento => {
   dibujarTablero();
 });
 
-// Inicializar juego
+
 dibujarTablero();

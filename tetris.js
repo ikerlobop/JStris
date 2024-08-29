@@ -221,7 +221,7 @@ function actualizarPuntuacion() {
   puntuacionDiv.textContent = `puntos: ${puntuacionTotal}`;
 }
 
-// Manejar entrada del usuario
+// Manejar entrada del usuario con teclas y 
 document.addEventListener('keydown', evento => {
   switch (evento.key) {
     case 'ArrowLeft':
@@ -239,6 +239,34 @@ document.addEventListener('keydown', evento => {
       break;
   }
   dibujarTablero();
+});
+
+// Manejar entrada del usuario tactil
+document.addEventListener('touchstart', evento => {
+  const xInicial = evento.touches[0].clientX;
+  const yInicial = evento.touches[0].clientY;
+  document.addEventListener('touchend', evento => {
+    const xFinal = evento.changedTouches[0].clientX;
+    const yFinal = evento.changedTouches[0].clientY;
+    const xDiferencia = xFinal - xInicial;
+    const yDiferencia = yFinal - yInicial;
+    if (Math.abs(xDiferencia) > Math.abs(yDiferencia)) {
+      if (xDiferencia > 0) {
+        moverPieza('derecha');
+      } else {
+        moverPieza('izquierda');
+      }
+    } else {
+      if (yDiferencia > 0) {
+        if (!colision(0, 1)) {
+          moverPieza('abajo');
+        } else {
+          fijarPieza();
+        }
+      }
+    }
+  });
+  
 });
 
 

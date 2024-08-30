@@ -29,13 +29,13 @@ Puedes jugar JSTRIS directamente en tu navegador a través de **GitHub Pages**. 
 1. **Clona este repositorio**:
 
     ```bash
-    git clone https://github.com/ikerlobop/TetrisJS.git
+    git clone https://github.com/ikerlobop/JStris.git
     ```
 
 2. **Navega al directorio del proyecto**:
 
     ```bash
-    cd TetrisJS
+    cd JStris
     ```
 
 3. **Abre el archivo `index.html` en tu navegador web**:

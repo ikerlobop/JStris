@@ -17,7 +17,7 @@ JSTRIS es un proyecto de juego de bloques inspirado en Tetris, implementado en J
 
 ## Juega en línea
 
-Puedes jugar JSTRIS directamente en tu navegador a través de **GitHub Pages**. [Haz clic aquí para jugar ahora](https://ikerlobop.github.io/TetrisJS/).
+Puedes jugar JSTRIS directamente en tu navegador a través de **GitHub Pages**. [Haz clic aquí para jugar ahora](https://ikerlobop.github.io/JStris/).
 
 ## Requisitos
 

@@ -4,6 +4,9 @@ const tamañoCuadro = 20;
 const canvas = document.getElementById('tetrisCanvas');
 const contexto = canvas.getContext('2d');
 const puntuacionDiv = document.getElementById('puntos');
+const nivelDiv = document.getElementById('nivel')
+const lineasDiv = document.getElementById('lineas');
+
 
 let tablero = Array.from({ length: filas }, () => Array(columnas).fill(null));
 
@@ -62,8 +65,6 @@ const piezas = [
       [1, 0, 1],
     ],
     color: '#500080'
-
-      
   },
 ];
 
@@ -72,6 +73,8 @@ let posicionPieza = { x: 3, y: 0 };
 
 // Puntuación inicial
 let puntuacionTotal = 0;
+let nivel = 1;
+let lineas = 0;
 
 // Dibujar tablero en el canvas
 function dibujarTablero() {
@@ -123,6 +126,10 @@ function rotarPieza() {
   }
 }
 
+// Controlar los niveles y la velocidad
+function nivelDificultad() {
+  nivel = Math.min(Math.floor(lineas / 10) + 1, 10);
+}
 
 // Bucle principal
 function bucle() {
@@ -132,8 +139,8 @@ function bucle() {
   } else {
     fijarPieza();
   }
-  setTimeout(bucle, 500);
-  
+  nivelDificultad();
+  setTimeout(bucle, 500 - (nivel * 50)); // Aumentar la velocidad según el nivel
 }
 bucle();
 
@@ -143,19 +150,11 @@ function gameOver() {
     alert('Game Over');
     tablero = Array.from({ length: filas }, () => Array(columnas).fill(null));
     puntuacionTotal = 0; 
-    nivel = 0; 
+    nivel = 1; 
     lineas = 0; 
     actualizarPuntuacion();
   }
 }
-//nivel
-let nivel = 0;
-let lineas = 0;
-function actualizarPuntuacion() {
-  puntuacionDiv.innerHTML = `Puntuación: ${puntuacionTotal} <br> Nivel: ${nivel} <br> Lineas: ${lineas}`;
-}
-
-
 
 // Rotar pieza al presionar barra espaciadora
 document.addEventListener('keydown', evento => {
@@ -171,15 +170,18 @@ document.addEventListener('touchstart', evento => {
   dibujarTablero();
 });
 
-
 // Chequear colisión
 function colision(dx, dy) {
   for (let y = 0; y < piezaActual.forma.length; y++) {
     for (let x = 0; x < piezaActual.forma[y].length; x++) {
       if (
         piezaActual.forma[y][x] &&
-        (tablero[posicionPieza.y + y + dy] &&
-          tablero[posicionPieza.y + y + dy][posicionPieza.x + x + dx]) !== null
+        (
+          posicionPieza.y + y + dy >= filas ||
+          posicionPieza.x + x + dx < 0 ||
+          posicionPieza.x + x + dx >= columnas ||
+          tablero[posicionPieza.y + y + dy][posicionPieza.x + x + dx]
+        )
       ) {
         return true;
       }
@@ -219,14 +221,18 @@ function limpiarFilas() {
     tablero.unshift(Array(columnas).fill(null));
   }
   
-  puntuacionTotal += filasCompletas * 10; // Aumentar puntuación
+  lineas += filasCompletas; // Contar las líneas completadas
+  puntuacionTotal += filasCompletas * 10 * nivel; // Aumentar puntuación y considerar el nivel
   actualizarPuntuacion(); // Actualizar visualización de puntuación
 }
 
 // Actualizar visualización de la puntuación
 function actualizarPuntuacion() {
-  puntuacionDiv.textContent = `puntos: ${puntuacionTotal}`;
+  puntuacionDiv.textContent = `Puntos: ${puntuacionTotal}`;
+  nivelDiv.textContent = `Nivel: ${nivel}`;
+  lineasDiv.textContent = `Lineas: ${lineas}`; // Actualizamos las líneas completadas
 }
+
 
 // Manejar entrada del usuario con teclas y 
 document.addEventListener('keydown', evento => {
@@ -273,8 +279,7 @@ document.addEventListener('touchstart', evento => {
       }
     }
   });
-  
 });
 
-
 dibujarTablero();
+
